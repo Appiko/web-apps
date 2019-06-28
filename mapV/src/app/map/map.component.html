@@ -1,0 +1,67 @@
+<div class="container">
+  <div id="map"></div>
+
+  <mdc-drawer drawer="permanent" class="sidebar" [mdcElevation]="16">
+    <mdc-drawer-header title="⚙️ Settings"></mdc-drawer-header>
+    <mdc-drawer-content>
+      <mdc-list>
+        <mdc-text-field
+          mdc-list-item
+          outlined
+          label="Text Size"
+          [(ngModel)]="textSize"
+          (input)="updateFields({ field: 'size', value: $event })"
+        ></mdc-text-field>
+        <mdc-text-field
+          mdc-list-item
+          outlined
+          label="Text Color"
+          [(ngModel)]="textColor"
+          (input)="updateFields({ field: 'color', value: $event })"
+        ></mdc-text-field>
+        <mdc-form-field>
+          <label>Overlap Markers?</label>
+          <mdc-switch
+            [(ngModel)]="isOverlapped"
+            mdcListItemMeta
+            (input)="updateFields({ field: 'overlap', value: $event })"
+          ></mdc-switch>
+        </mdc-form-field>
+        {{ isOverlapped }}
+      </mdc-list>
+      <mdc-list>
+        <mdc-list-item class="downloadBtn">
+          <button mdc-button secondary (click)="downloadPng()">
+            <mdc-icon>arrow_downward</mdc-icon>Download as PNG
+            <a href="{{ downloadLink }}"> </a>
+          </button>
+        </mdc-list-item>
+        <div
+          class="markerCard"
+          mdc-list-item
+          *ngFor="let marker of markers; let index = index"
+        >
+          <mdc-card [mdcElevation]="4">
+            <mdc-card-primary-action
+              class="cardInfo"
+              (click)="fly(marker.geometry.coordinates)"
+            >
+              <div mdcSubtitle2>{{ marker.properties.info }}</div>
+              <div mdcBody2>{{ marker.geometry.coordinates }}</div>
+            </mdc-card-primary-action>
+            <mdc-card-actions>
+              <button
+                mdc-button
+                class="danger"
+                (click)="delete(index)"
+                mdcCardAction="button"
+              >
+                Delete
+              </button>
+            </mdc-card-actions>
+          </mdc-card>
+        </div>
+      </mdc-list>
+    </mdc-drawer-content>
+  </mdc-drawer>
+</div>

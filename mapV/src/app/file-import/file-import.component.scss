@@ -1,0 +1,55 @@
+.upload-btn-wrapper input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 200px;
+
+  opacity: 0;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 0.5fr 0.5fr;
+  justify-items: center;
+
+  grid-template-areas:
+    "... ... ..."
+    "... fileUploadButton ..."
+    "options options options"
+    "... buildButton ...";
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  justify-items: center;
+  grid-area: options;
+}
+button {
+  display: block;
+  grid-area: buildButton;
+}
+// .option1 {
+//   grid-area: option1;
+// }
+// .option2 {
+//   grid-area: option2;
+// }
+// .option3 {
+//   grid-area: option3;
+// }
+mdc-select {
+  margin: auto;
+}
+
+.upload-btn-wrapper {
+  grid-area: fileUploadButton;
+  cursor: pointer;
+  width: 200px;
+  margin: auto;
+}

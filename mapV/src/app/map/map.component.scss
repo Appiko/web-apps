@@ -1,0 +1,64 @@
+// .downloadBtn {
+//   display: block;
+//   position: fixed;
+//   bottom: 56px;
+//   right: 56px;
+// }
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "map map map sidebar"
+    "map map map sidebar"
+    "map map map sidebar"
+    "map map map sidebar";
+
+  justify-content: center;
+}
+
+.downloadBtn {
+  justify-self: center;
+  align-self: flex-end;
+  margin: auto auto 56px auto;
+}
+
+#map {
+  grid-area: map;
+
+  height: 100%;
+  width: 100%;
+
+  z-index: 1;
+}
+
+.sidebar {
+  width: 100%;
+  height: 100%;
+  grid-area: sidebar;
+  display: flex;
+  background: white;
+  box-shadow: 2px 4px #888;
+  z-index: 3;
+}
+
+mdc-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+}
+.danger {
+  // @include mdc-button-container-fill-color(#ff0000);
+}
+
+.markerCard {
+  margin: 10px;
+  .cardInfo {
+    padding: 8px 16px;
+  }
+}

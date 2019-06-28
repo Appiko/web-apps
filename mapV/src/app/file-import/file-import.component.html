@@ -1,0 +1,60 @@
+<div class="container" *ngIf="!markers.length">
+  <div class="upload-btn-wrapper">
+    <button mdc-button outlined>
+      <mdc-icon>add</mdc-icon>Upload CSV file
+      <input type="file" name="fileInput" (change)="fileUploaded($event)" />
+    </button>
+  </div>
+
+  <div class="options" *ngIf="headers.length">
+    <mdc-select
+      placeholder="Latitude"
+      outlined
+      class="option1"
+      [(ngModel)]="latField"
+    >
+      <mdc-menu>
+        <mdc-list>
+          <mdc-list-item *ngFor="let header of headers" [value]="header">{{
+            header
+          }}</mdc-list-item>
+        </mdc-list>
+      </mdc-menu>
+    </mdc-select>
+    <mdc-select
+      [(ngModel)]="lngField"
+      outlined
+      placeholder="Longitude"
+      class="option2"
+    >
+      <mdc-menu>
+        <mdc-list>
+          <mdc-list-item *ngFor="let header of headers" [value]="header">{{
+            header
+          }}</mdc-list-item>
+        </mdc-list>
+      </mdc-menu>
+    </mdc-select>
+    <mdc-select
+      [(ngModel)]="infoField"
+      outlined
+      placeholder="Display on markers"
+      class="option3"
+    >
+      <mdc-menu>
+        <mdc-list>
+          <mdc-list-item *ngFor="let header of headers" [value]="header">{{
+            header
+          }}</mdc-list-item>
+        </mdc-list>
+      </mdc-menu>
+    </mdc-select>
+  </div>
+  <button mdc-button outlined (click)="buildMap()" *ngIf="headers.length">
+    <mdc-icon>build</mdc-icon>Build Map
+  </button>
+</div>
+
+<div class="mapContainer" *ngIf="markers.length">
+  <app-map [markers]="markers"></app-map>
+</div>
